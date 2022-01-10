@@ -20,12 +20,16 @@ const InstallPwa = () => {
 
     if (typeof window !== 'undefined' && addBtn) {
       window.addEventListener('beforeinstallprompt', e => {
+        console.log("beforeinstallprompt", e);
+        console.log("button", addBtn);
         e.preventDefault();
         deferredPrompt = e;
-        addBtn.addEventListener('click', () => {
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then(choiceResult => {
-            if (choiceResult.outcome === 'accepted') {
+        addBtn?.addEventListener("click", () => {
+          console.log("button clicked", deferredPrompt);
+          deferredPrompt?.prompt();
+          deferredPrompt?.userChoice.then((choiceResult) => {
+            console.log("User choice");
+            if (choiceResult.outcome === "accepted") {
               setShowInstallApp(false);
             }
             deferredPrompt = null;
