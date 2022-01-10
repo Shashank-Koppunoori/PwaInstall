@@ -25,12 +25,12 @@ const InstallPwa = () => {
         listenToUserAction();
       });
         
-      function listenToUserAction() {
+      const listenToUserAction = () => {
        const addBtn = document.querySelector('.install-app-button');
        addBtn.addEventListener("click", presentAddToHome);
       }
 
-      function presentAddToHome() {
+      const presentAddToHome = () => {
         console.log("button clicked", deferredPrompt);
         deferredPrompt?.prompt();
         deferredPrompt?.userChoice.then((choiceResult) => {
@@ -41,7 +41,6 @@ const InstallPwa = () => {
           deferredPrompt = null;
         });
       }
-      
     }
   }, []);
 
