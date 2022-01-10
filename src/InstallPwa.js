@@ -18,7 +18,7 @@ const InstallPwa = () => {
       setShowInstallApp(false);
     }
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && addBtn) {
       window.addEventListener('beforeinstallprompt', e => {
         e.preventDefault();
         deferredPrompt = e;
