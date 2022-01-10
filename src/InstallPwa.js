@@ -5,7 +5,6 @@ const InstallPwa = () => {
   React.useEffect(() => {
 
     let deferredPrompt;
-    const addBtn = document.querySelector('.install-app-button');
 
     // Checks if users is using installed pwa
     if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
@@ -18,13 +17,19 @@ const InstallPwa = () => {
       setShowInstallApp(false);
     }
 
-    if (typeof window !== 'undefined' && addBtn) {
+    if (typeof window !== 'undefined') {
       window.addEventListener('beforeinstallprompt', e => {
         console.log("beforeinstallprompt", e);
-        console.log("button", addBtn);
         e.preventDefault();
         deferredPrompt = e;
-        addBtn?.addEventListener("click", () => {
+        listenToUserAction();
+
+        function listenToUserAction() {
+         const addBtn = document.querySelector('.install-app-button');
+         addBtn.addEventListener("click", presentAddToHome);
+        }
+
+        function presentAddToHome() {
           console.log("button clicked", deferredPrompt);
           deferredPrompt?.prompt();
           deferredPrompt?.userChoice.then((choiceResult) => {
@@ -34,7 +39,7 @@ const InstallPwa = () => {
             }
             deferredPrompt = null;
           });
-        });
+        }
       });
     }
   }, []);
