@@ -23,24 +23,25 @@ const InstallPwa = () => {
         e.preventDefault();
         deferredPrompt = e;
         listenToUserAction();
-
-        function listenToUserAction() {
-         const addBtn = document.querySelector('.install-app-button');
-         addBtn.addEventListener("click", presentAddToHome);
-        }
-
-        function presentAddToHome() {
-          console.log("button clicked", deferredPrompt);
-          deferredPrompt?.prompt();
-          deferredPrompt?.userChoice.then((choiceResult) => {
-            console.log("User choice");
-            if (choiceResult.outcome === "accepted") {
-              setShowInstallApp(false);
-            }
-            deferredPrompt = null;
-          });
-        }
       });
+        
+      function listenToUserAction() {
+       const addBtn = document.querySelector('.install-app-button');
+       addBtn.addEventListener("click", presentAddToHome);
+      }
+
+      function presentAddToHome() {
+        console.log("button clicked", deferredPrompt);
+        deferredPrompt?.prompt();
+        deferredPrompt?.userChoice.then((choiceResult) => {
+          console.log("User choice");
+          if (choiceResult.outcome === "accepted") {
+            setShowInstallApp(false);
+          }
+          deferredPrompt = null;
+        });
+      }
+      
     }
   }, []);
 
