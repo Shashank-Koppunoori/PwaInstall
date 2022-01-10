@@ -38,9 +38,9 @@ const InstallPwa = () => {
   return (
     <>
       {showInstallApp && (
-        <button className='install-app-button' type='button'>
+        <div className='install-app-button'>
           Install
-        </button>
+        </div>
       )}
     </>
 )
