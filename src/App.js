@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import InstallPwa from "./InstallPwa";
 function App() {
+
   return (
     <div className="App">
+      <InstallPwa />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
